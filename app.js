@@ -35,55 +35,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Hero Height Fix (iOS Safari 100vh bug) ---------- */
+  const heroEl = document.querySelector('.hero');
+  function fixHeroHeight() {
+    if (heroEl) heroEl.style.minHeight = window.innerHeight + 'px';
+  }
+  fixHeroHeight();
+  window.addEventListener('resize', fixHeroHeight, { passive: true });
+
   /* ================================================================
-     SCROLL-TRIGGERED ANIMATIONS (Waypoints-style)
-     Triggers .visible class on .anim elements when they enter viewport
+     SCROLL-TRIGGERED ANIMATIONS
+     Uses getBoundingClientRect + scroll event — 100% iOS Safari safe.
+     IntersectionObserver is unreliable on iOS Safari in many cases.
      ================================================================ */
   const animEls = document.querySelectorAll('.anim');
-  if (animEls.length > 0 && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -20px 0px'
-    });
 
-    animEls.forEach(el => observer.observe(el));
-  } else {
-    // Fallback: no IntersectionObserver support — show everything
-    animEls.forEach(el => el.classList.add('visible'));
+  function checkAnimations() {
+    const vh = window.innerHeight;
+    let allDone = true;
+    animEls.forEach(el => {
+      if (!el.classList.contains('visible')) {
+        allDone = false;
+        const rect = el.getBoundingClientRect();
+        // Trigger when element is 60px from the bottom of the viewport
+        if (rect.top < vh - 60 && rect.bottom > 0) {
+          el.classList.add('visible');
+        }
+      }
+    });
+    // Remove listener once all are visible (performance)
+    if (allDone && animEls.length > 0) {
+      window.removeEventListener('scroll', checkAnimations);
+    }
   }
 
-  // Failsafe: after 1.5s, force-reveal any elements still hidden
-  // (handles cases where iOS doesn't trigger IntersectionObserver for on-screen elements)
-  setTimeout(() => {
-    document.querySelectorAll('.anim:not(.visible)').forEach(el => {
-      el.classList.add('visible');
-    });
-  }, 1500);
-
-  /* Also handle legacy .fade-in class */
-  const fadeEls = document.querySelectorAll('.fade-in');
-  if (fadeEls.length > 0 && 'IntersectionObserver' in window) {
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    fadeEls.forEach(el => fadeObserver.observe(el));
+  if (animEls.length > 0) {
+    window.addEventListener('scroll', checkAnimations, { passive: true });
+    window.addEventListener('touchmove', checkAnimations, { passive: true });
+    // Check immediately for elements already in view on load
+    setTimeout(checkAnimations, 150);
   }
+
+
 
   /* ---------- Hero Video Fallback ---------- */
   const heroVideo = document.querySelector('.hero-bg video');
