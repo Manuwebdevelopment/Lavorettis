@@ -241,9 +241,9 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--text-main);
 }
 
-/* Hamburger active (X) when open — ensure X bars stay dark */
+/* Hamburger active (X) when open — white because menu bg is dark */
 .hamburger.active span {
-  background: var(--text-main);
+  background: #fff;
 }
 
 .hamburger.active span:nth-child(1) {
@@ -1143,6 +1143,14 @@ h1, h2, h3, h4, h5, h6 {
   }
   .intro-text h2 {
     font-size: 1.75rem;
+  }
+
+  /* Reduce slide animation distances on mobile to prevent overflow */
+  .anim-slide-left {
+    transform: translate3d(-40px, 0, 0);
+  }
+  .anim-slide-right {
+    transform: translate3d(40px, 0, 0);
   }
 
   /* Service rows on mobile */
