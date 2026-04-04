@@ -54,7 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     animEls.forEach(el => observer.observe(el));
+  } else {
+    // Fallback: no IntersectionObserver support — show everything
+    animEls.forEach(el => el.classList.add('visible'));
   }
+
+  // Failsafe: after 1.5s, force-reveal any elements still hidden
+  // (handles cases where iOS doesn't trigger IntersectionObserver for on-screen elements)
+  setTimeout(() => {
+    document.querySelectorAll('.anim:not(.visible)').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 1500);
 
   /* Also handle legacy .fade-in class */
   const fadeEls = document.querySelectorAll('.fade-in');
