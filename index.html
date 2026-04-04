@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavoretti's | Premium Handyman &amp; Maintenance</title>
+  <meta name="description"
+    content="Your one-stop solution for home and business needs in Bondi and Sydney's Eastern Suburbs. From small repairs to full renovations — handled with professional care and zero shortcuts.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo"><img src="assets/images/Logo-skull.jpg" alt="Lavoretti's Logo"></a>
+      <ul class="navbar-links" id="navLinks">
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="services.html">SERVICES</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO (Video Background) ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <!-- Video background like Tag Haus — falls back to static image -->
+      <video autoplay muted loop playsinline
+        poster="assets/images/hero-static-bg-premium-handyman-working-or-clean-van-in-bondi.jpg">
+        <source src="assets/video/hero-video.mp4" type="video/mp4">
+      </video>
+      <!-- If no video file exists yet, the poster image shows -->
+      <img src="assets/images/hero-static-bg-premium-handyman-working-or-clean-van-in-bondi.jpg"
+        alt="Premium handyman services in Sydney Eastern Suburbs" loading="eager" class="hero-fallback-img">
+    </div>
+    <div class="hero-content">
+      <p class="hero-pre-heading">Bondi — Sydney's Eastern Suburbs</p>
+      <h1 class="hero-heading">LAVORETTI'S</h1>
+      <p class="hero-subheading">Premium Maintenance &amp; Handyman Services for Home and Business.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-outline">Get A Free Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIRST TRANSITION / INTRO ============ -->
+  <section class="intro-showcase" id="about">
+    <div class="intro-showcase-inner">
+      <div class="intro-images">
+        <div class="intro-image-col">
+          <img src="assets/images/intro-vertical-1.jpg" alt="Premium hardwood detailed finish"
+            class="anim anim-slide-left">
+        </div>
+        <div class="intro-image-col">
+          <img src="assets/images/intro-vertical-2.jpg" alt="Crisp interior painting detail"
+            class="anim anim-slide-left stagger-1">
+        </div>
+      </div>
+      <div class="intro-text">
+        <h2 class="anim anim-fade-bottom">Transforming Sydney Properties Into Functional Masterpieces.</h2>
+        <p class="sub-heading anim anim-fade-bottom stagger-1">Real Tradespeople. Real Results.</p>
+        <p class="anim anim-fade-bottom stagger-2">Lavoretti's has been serving Bondi and the Eastern Suburbs for over a
+          decade. With over 150 five-star Google reviews and hundreds of completed jobs, we are dedicated to delivering
+          outcomes that exceed expectations.</p>
+        <p class="anim anim-fade-bottom stagger-3">Our approach is built on professional care and zero shortcuts.
+          Whether it's refreshing a single room, mounting a TV, or managing a small-scale renovation, we offer
+          end-to-end solutions that elevate your property.</p>
+        <a href="contact.html" class="btn btn-outline-dark anim anim-fade-bottom stagger-4">Quick Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES — Alternating Image / Text Rows ============ -->
+  <section class="services-showcase" id="services">
+
+    <!-- Row 1: Image LEFT, Text RIGHT -->
+    <div class="service-row-wrapper">
+      <div class="service-row">
+        <div class="service-row-img">
+          <img src="assets/images/portfolio/slide-01-commercial-office-fitout-bright-lighting.jpg"
+            alt="General Handyman Services" class="anim anim-slide-left">
+        </div>
+        <div class="service-row-text">
+          <h3 class="anim anim-fade-bottom">General Handyman</h3>
+          <p class="anim anim-fade-bottom stagger-1">TV mounting, shelving, flatpack assembly, curtain rails, door
+            hardware — if it needs doing, it gets done right with precision and care.</p>
+          <a href="services.html#general-handyman" class="card-link anim anim-fade-bottom stagger-2">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Text LEFT, Image RIGHT -->
+    <div class="service-row-wrapper">
+      <div class="service-row reverse">
+        <div class="service-row-img">
+          <img src="assets/images/portfolio/slide-05-general-painting-interior-crisp-white-walls.jpg"
+            alt="Professional Painting Services" class="anim anim-slide-right">
+        </div>
+        <div class="service-row-text">
+          <h3 class="anim anim-fade-bottom">Professional Painting</h3>
+          <p class="anim anim-fade-bottom stagger-1">Interior &amp; exterior painting, wall &amp; ceiling repaints, trim
+            restoration, patching &amp; plaster repairs, bringing life back to your spaces.</p>
+          <a href="services.html#painting" class="card-link anim anim-fade-bottom stagger-2">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Image LEFT, Text RIGHT -->
+    <div class="service-row-wrapper">
+      <div class="service-row">
+        <div class="service-row-img">
+          <img src="assets/images/portfolio/slide-03-courtyard-transformation-hardwood-decking.jpg"
+            alt="Property Maintenance Services" class="anim anim-slide-left">
+        </div>
+        <div class="service-row-text">
+          <h3 class="anim anim-fade-bottom">Property Maintenance</h3>
+          <p class="anim anim-fade-bottom stagger-1">Regular upkeep for landlords and property managers. We handle
+            end-of-lease repairs and keep everything in top shape between tenancies.</p>
+          <a href="services.html#maintenance" class="card-link anim anim-fade-bottom stagger-2">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Text LEFT, Image RIGHT -->
+    <div class="service-row-wrapper">
+      <div class="service-row reverse">
+        <div class="service-row-img">
+          <img src="assets/images/portfolio/slide-02-bathroom-renovation-after-bamboo-ceiling.jpg"
+            alt="Small Renovations & Fitouts" class="anim anim-slide-right">
+        </div>
+        <div class="service-row-text">
+          <h3 class="anim anim-fade-bottom">Small Renovations</h3>
+          <p class="anim anim-fade-bottom stagger-1">Minor home improvements and upgrades — bathrooms, courtyards,
+            kitchens — that completely transform your space with premium finishes.</p>
+          <a href="services.html#renovations" class="card-link anim anim-fade-bottom stagger-2">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ PORTFOLIO ============ -->
+  <section class="portfolio" id="work">
+    <div class="container">
+      <div class="section-heading">
+        <h2 class="anim anim-fade-bottom">Our Work</h2>
+      </div>
+    </div>
+    <div class="portfolio-wrapper">
+      <div class="swiper portfolio-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="assets/images/portfolio/slide-11-commercial-office-fitout-bright-lighting.jpg"
+              alt="Commercial Office Fitout featuring steel stud framing and premium detailing">
+          </div>
+          <div class="swiper-slide">
+            <img src="assets/images/portfolio/slide-12-bathroom-renovation-after-bamboo-ceiling.jpg"
+              alt="Stunning modern bathroom renovation with bamboo ceiling and feature lighting">
+          </div>
+          <div class="swiper-slide">
+            <img src="assets/images/portfolio/slide-13-courtyard-transformation-hardwood-decking.jpg"
+              alt="Courtyard rebuilt with beautiful hardwood timber decking">
+          </div>
+          <div class="swiper-slide">
+            <img src="assets/images/portfolio/slide-14-coogee-bakery-custom-timber-counter.jpg"
+              alt="Coogee Bakery commercial fitout with custom timber counter and display cases">
+          </div>
+          <div class="swiper-slide">
+            <img src="assets/images/portfolio/slide-15-general-painting-interior-crisp-white-walls.jpg"
+              alt="Interior painting and plaster repair showcasing clean, flawless finish">
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-nav">
+        <button class="portfolio-nav-btn" id="prevBtn">← Previous</button>
+        <div class="portfolio-pagination" id="portfolioPagination"></div>
+        <button class="portfolio-nav-btn" id="nextBtn">Next →</button>
+      </div>
+      <div class="portfolio-cta">
+        <a href="#contact" class="btn btn-outline-dark anim anim-fade-bottom">Get A Free Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2 class="anim anim-fade-bottom">Let's Chat.</h2>
+          <p class="anim anim-fade-bottom stagger-1">Ready to get started? Drop us a message with a few details about
+            your project and we'll get back to you fast.</p>
+          <div class="contact-detail anim anim-fade-bottom stagger-2" style="margin-top: 2rem;">
+            <span>Email</span>
+            <a href="mailto:info@lavorettis.com">info@lavorettis.com</a>
+          </div>
+          <div class="contact-detail anim anim-fade-bottom stagger-3">
+            <span>Phone</span>
+            <a href="tel:0478940264">0478 940 264</a>
+          </div>
+          <div class="contact-detail anim anim-fade-bottom stagger-4">
+            <span>Instagram</span>
+            <a href="https://instagram.com/lavorettis" target="_blank">@lavorettis</a>
+          </div>
+          <p class="anim anim-fade-bottom stagger-5" style="margin-top: 2rem; font-size: 0.9rem;">Most jobs responded to
+            within 24 hours.</p>
+        </div>
+        <form class="contact-form anim anim-slide-right" id="contactForm" novalidate>
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="location" placeholder="Where is your property located?" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Message" required></textarea>
+          </div>
+          <label class="file-upload-zone" id="fileUploadZone">
+            <input type="file" name="propertyImages" multiple accept="image/*">
+            <span>Upload Pictures of the Issue/Space</span>
+          </label>
+          <div class="captcha-group">
+            <label for="captcha">10 + 12 =</label>
+            <input type="text" id="captcha" name="captcha" autocomplete="off" required>
+          </div>
+          <button type="submit" class="btn btn-outline">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <p>Copyright © 2026 Lavoretti's Maintenance | Privacy Policy | All Rights Reserved</p>
+      <p class="footer-credit">Developed By <a href="https://brixiamarketing.com">Brixiamarketing</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

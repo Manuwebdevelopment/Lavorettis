@@ -1,0 +1,219 @@
+{
+    "siteMetadata": {
+        "title": "Lavoretti's | Premium Handyman & Maintenance",
+        "description": "Your one-stop solution for home and business needs in Bondi and Sydney's Eastern Suburbs. From small repairs to full renovations — handled with professional care and zero shortcuts.",
+        "contactEmail": "info@lavorettis.com",
+        "contactPhone": "0478 940 264",
+        "copyright": "Copyright © 2026 Lavoretti's Maintenance | Privacy Policy | All Rights Reserved",
+        "developerCredit": "Designed By You"
+    },
+    "navigation": [
+        {
+            "label": "HOME",
+            "path": "/"
+        },
+        {
+            "label": "SERVICES",
+            "path": "/services"
+        },
+        {
+            "label": "ABOUT",
+            "path": "/about"
+        },
+        {
+            "label": "CONTACT",
+            "path": "/contact"
+        }
+    ],
+    "pages": {
+        "home": {
+            "hero": {
+                "preHeading": "Bondi — Sydney's Eastern Suburbs",
+                "heading": "LAVORETTI'S",
+                "subHeading": "Premium Maintenance & Handyman Services for Home and Business.",
+                "ctaButton": {
+                    "text": "Get A Free Quote",
+                    "link": "#contact"
+                },
+                "media": {
+                    "type": "image",
+                    "src": "/assets/images/hero-static-bg-premium-handyman-working-or-clean-van-in-bondi.jpg",
+                    "alt": "Premium handyman services in Sydney Eastern Suburbs"
+                }
+            },
+            "intro": {
+                "heading": "Real Tradespeople. Real Results.",
+                "subHeading": "The handyman service locals trust.",
+                "paragraphs": [
+                    "Lavoretti's has been serving Bondi and the Eastern Suburbs for over a decade. With over 150 five-star Google reviews and hundreds of completed jobs, we are dedicated to delivering outcomes that exceed expectations.",
+                    "Our approach is built on professional care and zero shortcuts. Whether it's refreshing a single room, mounting a TV, or managing a small-scale renovation, we offer end-to-end solutions that simplify the process and elevate your property.",
+                    "From minor home improvements to commercial office fitouts, our commitment to quality has made us the partner of choice for homeowners, landlords, and property managers alike throughout Sydney's East."
+                ],
+                "ctaButton": {
+                    "text": "Quick Estimate",
+                    "link": "/contact"
+                }
+            },
+            "servicesOverview": [
+                {
+                    "id": "general-handyman",
+                    "title": "General Handyman",
+                    "description": "TV mounting, shelving, flatpack assembly, curtain rails, door hardware — if it needs doing, it gets done right with precision and care.",
+                    "linkText": "Learn More",
+                    "linkPath": "/services#general-handyman"
+                },
+                {
+                    "id": "painting",
+                    "title": "Professional Painting",
+                    "description": "Interior & exterior painting, wall & ceiling repaints, trim restoration, patching & plaster repairs, bringing life back to your spaces.",
+                    "linkText": "Learn More",
+                    "linkPath": "/services#painting"
+                },
+                {
+                    "id": "property-maintenance",
+                    "title": "Property Maintenance",
+                    "description": "Regular upkeep for landlords and property managers. We handle end-of-lease repairs and keep everything in top shape between tenancies.",
+                    "linkText": "Learn More",
+                    "linkPath": "/services#maintenance"
+                },
+                {
+                    "id": "small-renovations",
+                    "title": "Small Renovations",
+                    "description": "Minor home improvements and upgrades — bathrooms, courtyards, kitchens — that completely transform your space with premium finishes.",
+                    "linkText": "Learn More",
+                    "linkPath": "/services#renovations"
+                }
+            ],
+            "portfolio": {
+                "heading": "Our Work",
+                "controls": {
+                    "prevText": "Previous",
+                    "nextText": "Next"
+                },
+                "images": [
+                    {
+                        "id": 1,
+                        "src": "/assets/images/portfolio/slide-01-commercial-office-fitout-bright-lighting.jpg",
+                        "alt": "Commercial Office Fitout featuring steel stud framing and premium detailing"
+                    },
+                    {
+                        "id": 2,
+                        "src": "/assets/images/portfolio/slide-02-bathroom-renovation-after-bamboo-ceiling.jpg",
+                        "alt": "Stunning modern bathroom renovation with bamboo ceiling and feature lighting"
+                    },
+                    {
+                        "id": 3,
+                        "src": "/assets/images/portfolio/slide-03-courtyard-transformation-hardwood-decking.jpg",
+                        "alt": "Courtyard rebuilt with beautiful hardwood timber decking"
+                    },
+                    {
+                        "id": 4,
+                        "src": "/assets/images/portfolio/slide-04-coogee-bakery-custom-timber-counter.jpg",
+                        "alt": "Coogee Bakery commercial fitout with custom timber counter and display cases"
+                    },
+                    {
+                        "id": 5,
+                        "src": "/assets/images/portfolio/slide-05-general-painting-interior-crisp-white-walls.jpg",
+                        "alt": "Interior painting and plaster repair showcasing clean, flawless finish"
+                    }
+                ]
+            },
+            "contactForm": {
+                "heading": "Let's Chat.",
+                "fields": [
+                    {
+                        "type": "text",
+                        "name": "name",
+                        "placeholder": "Name",
+                        "required": true
+                    },
+                    {
+                        "type": "email",
+                        "name": "email",
+                        "placeholder": "Email Address",
+                        "required": true
+                    },
+                    {
+                        "type": "tel",
+                        "name": "phone",
+                        "placeholder": "Phone",
+                        "required": true
+                    },
+                    {
+                        "type": "text",
+                        "name": "location",
+                        "placeholder": "Where is your property located?",
+                        "required": true
+                    },
+                    {
+                        "type": "textarea",
+                        "name": "message",
+                        "placeholder": "Message",
+                        "required": true
+                    },
+                    {
+                        "type": "file",
+                        "name": "propertyImages",
+                        "placeholder": "Upload Pictures of the Issue/Space",
+                        "multiple": true,
+                        "required": false
+                    }
+                ],
+                "captcha": {
+                    "question": "10 + 12 =",
+                    "expectedAnswer": "22"
+                },
+                "submitButton": "Submit"
+            }
+        },
+        "services": {
+            "hero": {
+                "heading": "Our Services",
+                "subHeading": "Comprehensive solutions for your property."
+            },
+            "detailedServicesList": [
+                {
+                    "title": "General Handyman",
+                    "content": "From mounting heavy TVs securely to assembling complex flatpacks, installing custom shelving, and fixing door hardware. We handle the vital details that keep your home or business running smoothly."
+                },
+                {
+                    "title": "Professional Painting",
+                    "content": "Expert interior and exterior painting services. We handle everything from minor touch-ups and plaster patching to full room repaints, ensuring a flawless, premium finish every time."
+                },
+                {
+                    "title": "Property Maintenance & End of Lease",
+                    "content": "Reliable, ongoing maintenance for landlords, property managers, and businesses. We execute comprehensive end-of-lease repairs, touch-ups, and fixes so you get your bond back or have the property ready for the next tenant without stress."
+                },
+                {
+                    "title": "Small Renovations & Fitouts",
+                    "content": "Transforming spaces through minor renovations. Whether it's upgrading a bathroom, completely rebuilding a courtyard with hardwood decking, or executing a commercial office fitout, we deliver real results."
+                }
+            ]
+        },
+        "about": {
+            "hero": {
+                "heading": "About Lavoretti's",
+                "subHeading": "A decade of trust in the Eastern Suburbs."
+            },
+            "content": {
+                "heading": "Built on Professional Care and Zero Shortcuts",
+                "paragraphs": [
+                    "For over a decade, Lavoretti's has been the go-to maintenance and handyman service for Bondi and Sydney's Eastern Suburbs. Our reputation is built on a simple premise: real tradespeople delivering real results.",
+                    "We understand that whether you are a homeowner needing a quick repair, a property manager requiring reliable maintenance, or a business executing a full commercial fitout, you need a team that respects your time and property. With over 150 five-star reviews, our track record speaks for itself.",
+                    "We do not believe in shortcuts. Every project, no matter how small, is approached with the same dedication to quality, clear communication, and premium finishing."
+                ]
+            }
+        },
+        "contact": {
+            "hero": {
+                "heading": "Contact Us",
+                "subHeading": "Fast, no-obligation quotes."
+            },
+            "info": {
+                "email": "info@lavorettis.com",
+                "phone": "0478 940 264",
+                "responsePromise": "Most jobs responded to within 24 hours."
+            }
+        }
+    }
+}
