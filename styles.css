@@ -233,11 +233,16 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   width: 24px;
   height: 2px;
-  background: #fff;
+  background: var(--text-main);
   transition: all var(--transition);
 }
 
 .navbar.scrolled .hamburger span {
+  background: var(--text-main);
+}
+
+/* Hamburger active (X) when open — ensure X bars stay dark */
+.hamburger.active span {
   background: var(--text-main);
 }
 
@@ -296,11 +301,21 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 0;
 }
 
-.hero-bg img,
-.hero-bg video {
+.hero-bg video,
+.hero-bg .hero-fallback-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hero-bg .hero-fallback-img {
+  z-index: 0;
+}
+
+.hero-bg video {
+  z-index: 1;
 }
 
 .hero-bg::after {
@@ -308,12 +323,12 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   color: #fff;
   max-width: 900px;
   padding: 0 2rem;
@@ -1039,21 +1054,42 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* ================================================================
+   RESPONSIVE — Tablet & Mobile
+   ================================================================ */
+
+/* ---------- Tablet (≤ 1024px) ---------- */
 @media (max-width: 1024px) {
-  .service-row {
-    grid-template-columns: 1fr;
-    min-height: auto;
+  /* Intro section: tighten columns */
+  .intro-showcase-inner {
+    gap: 3rem;
   }
-  .service-row:nth-child(even) {
-    direction: ltr;
+  .intro-images {
+    width: 40%;
+  }
+  .intro-text {
+    width: 55%;
+  }
+
+  /* Service rows: stack vertically */
+  .service-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .service-row.reverse {
+    flex-direction: column;
   }
   .service-row-img {
+    width: 100%;
     height: 350px;
   }
   .service-row-text {
-    padding: 3rem 2rem;
+    width: 100%;
+    margin-top: 0;
+    padding: 2rem 0 1.5rem;
   }
+
+  /* Services page blocks */
   .service-block {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -1063,25 +1099,160 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ---------- Mobile (≤ 768px) ---------- */
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  /* Contact grid — single column */
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
+  /* Hero tweaks */
   .hero-heading {
     letter-spacing: 0.04em;
   }
+  .hero-subheading {
+    font-size: 1rem;
+  }
+
+  /* Intro section — full stack */
+  .intro-showcase {
+    padding: 90px 0 3rem;
+  }
+  .intro-showcase-inner {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1.25rem;
+  }
+  .intro-images {
+    width: 100%;
+  }
+  .intro-image-col img {
+    min-height: 220px;
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .intro-text {
+    width: 100%;
+    padding-top: 0;
+  }
+  .intro-text h2 {
+    font-size: 1.75rem;
+  }
+
+  /* Service rows on mobile */
+  .service-row {
+    padding: 0 1.25rem;
+    gap: 0;
+  }
+  .service-row-img {
+    height: 260px;
+  }
+  .service-row-text {
+    padding: 1.5rem 0 1rem;
+  }
+  .service-row-text h3 {
+    font-size: 1.4rem;
+  }
+  .service-row-wrapper {
+    padding: 2rem 0;
+  }
+
+  /* Portfolio swiper */
   .swiper-slide img {
-    height: 280px;
+    height: 240px;
   }
   .portfolio-nav {
     flex-wrap: wrap;
     gap: 1rem;
   }
+  .portfolio {
+    padding: 4rem 0;
+  }
+
+  /* Inner page hero */
   .page-hero {
     min-height: 40vh;
   }
-  .service-row-text {
-    padding: 2.5rem 1.5rem;
+
+  /* Services detail page */
+  .services-detail {
+    padding: 4rem 0;
+  }
+  .service-block {
+    margin-bottom: 3rem;
+  }
+  .service-block-img img {
+    height: 240px;
+  }
+
+  /* About page */
+  .about-content {
+    padding: 4rem 0;
+  }
+
+  /* Contact page */
+  .contact {
+    padding: 4rem 0;
+  }
+  .contact-page {
+    padding: 4rem 0;
+  }
+  .contact-form .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 2rem 1.25rem;
+  }
+}
+
+/* ---------- Small Phones (≤ 480px) ---------- */
+@media (max-width: 480px) {
+  /* Stack the two intro images vertically */
+  .intro-images {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .intro-image-col img {
+    min-height: 200px;
+    height: 200px;
+  }
+
+  /* Hero heading size floor */
+  .hero-heading {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  .hero-subheading {
+    font-size: 0.95rem;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Navbar logo smaller */
+  .navbar-logo img {
+    height: 60px;
+  }
+  .navbar-inner {
+    height: 70px;
+  }
+
+  /* Service row image shorter on small phones */
+  .service-row-img {
+    height: 220px;
+  }
+
+  /* Portfolio */
+  .swiper-slide img {
+    height: 200px;
   }
 }
