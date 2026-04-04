@@ -1,0 +1,55 @@
+# ============================================================
+# Lavoretti's — Apache Security & Performance Config
+# ============================================================
+
+# --- Force HTTPS ---
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# --- Security Headers ---
+<IfModule mod_headers.c>
+  # Prevent MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  # Clickjacking protection — only allow in same origin frames
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Legacy XSS filter (IE/older browsers)
+  Header always set X-XSS-Protection "1; mode=block"
+  # Control referrer info sent to third parties
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Restrict access to browser features
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  # Remove server fingerprint
+  Header unset Server
+  Header unset X-Powered-By
+</IfModule>
+
+# --- Protect Developer / Sensitive Files ---
+<FilesMatch "(^\.htaccess|content\.json|instruction\.md|.*\.env|.*\.log|.*\.git)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# --- Block directory listings ---
+Options -Indexes
+
+# --- Browser Caching (Performance) ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# --- Gzip Compression ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/plain
+</IfModule>
+
+# --- Custom 404 Page (optional) ---
+# ErrorDocument 404 /404.html

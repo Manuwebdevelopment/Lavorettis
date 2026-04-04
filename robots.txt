@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /content.json
+Disallow: /instruction.md
+Disallow: /.htaccess
+
+Sitemap: https://lavorettisbondi.com/sitemap.xml
