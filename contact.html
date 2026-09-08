@@ -57,7 +57,14 @@
         </div>
         <p class="anim anim-fade-bottom stagger-5" style="margin-top: 2.5rem; font-size: 0.9rem; color: var(--text-light);">Most jobs responded to within 24 hours.</p>
       </div>
-      <form class="contact-form anim anim-slide-right" id="contactForm" novalidate>
+      <form
+      class="contact-form anim anim-slide-right"
+  id="contactForm"
+  action="send-quote.php"
+  method="POST"
+  enctype="multipart/form-data"
+  novalidate
+>
         <div class="form-group">
           <input type="text" name="name" placeholder="Name" required>
         </div>

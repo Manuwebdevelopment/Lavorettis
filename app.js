@@ -183,48 +183,104 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- Custom File Upload ---------- */
+    /* ---------- Custom File Upload ---------- */
   const fileZone = document.getElementById('fileUploadZone');
+
   if (fileZone) {
     const fileInput = fileZone.querySelector('input[type="file"]');
     const label = fileZone.querySelector('span');
+
     if (fileInput && label) {
       fileInput.addEventListener('change', () => {
-        const count = fileInput.files.length;
-        if (count > 0) {
-          label.textContent = `${count} file${count > 1 ? 's' : ''} selected`;
-        } else {
+        const files = Array.from(fileInput.files);
+
+        const maxFiles = 5;
+        const maxFileSize = 5 * 1024 * 1024;
+        const maxTotalSize = 15 * 1024 * 1024;
+
+        if (files.length > maxFiles) {
+          alert('You can upload a maximum of 5 images.');
+          fileInput.value = '';
           label.textContent = 'Upload Pictures of the Issue/Space';
+          return;
+        }
+
+        const oversizedFile = files.find(
+          (file) => file.size > maxFileSize
+        );
+
+        if (oversizedFile) {
+          alert('Each image must be 5 MB or smaller.');
+          fileInput.value = '';
+          label.textContent = 'Upload Pictures of the Issue/Space';
+          return;
+        }
+
+        const totalSize = files.reduce(
+          (total, file) => total + file.size,
+          0
+        );
+
+        if (totalSize > maxTotalSize) {
+          alert('The total size of all images must be 15 MB or less.');
+          fileInput.value = '';
+          label.textContent = 'Upload Pictures of the Issue/Space';
+          return;
+        }
+
+        if (files.length > 0) {
+          label.textContent =
+            `${files.length} file${files.length > 1 ? 's' : ''} selected`;
+        } else {
+          label.textContent =
+            'Upload Pictures of the Issue/Space';
         }
       });
     }
   }
 
-  /* ---------- Contact Form — Captcha Validation ---------- */
+     /* ---------- Contact Form — Safari-safe Submission ---------- */
   const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const captchaInput = document.getElementById('captcha');
-      if (!captchaInput) return;
 
-      const answer = captchaInput.value.trim();
-      if (answer !== '22') {
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const captchaInput = document.getElementById('captcha');
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const fileInput = contactForm.querySelector('input[type="file"]');
+
+      if (!captchaInput || !submitButton) return;
+
+      /*
+      | Validate captcha
+      */
+
+      if (captchaInput.value.trim() !== '22') {
         alert('Incorrect answer. Please try the captcha again.');
         captchaInput.focus();
         return;
       }
 
-      const required = contactForm.querySelectorAll('[required]');
+      /*
+      | Validate required fields
+      */
+
+      const requiredFields = contactForm.querySelectorAll('[required]');
       let allValid = true;
-      required.forEach(field => {
+
+      requiredFields.forEach((field) => {
         if (!field.value.trim()) {
           allValid = false;
           field.style.borderBottomColor = '#e74c3c';
-          field.addEventListener('input', function handler() {
-            field.style.borderBottomColor = '';
-            field.removeEventListener('input', handler);
-          });
+
+          field.addEventListener(
+            'input',
+            function handler() {
+              field.style.borderBottomColor = '';
+              field.removeEventListener('input', handler);
+            }
+          );
         }
       });
 
@@ -233,10 +289,195 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      alert('Thank you! Your message has been received. We\'ll get back to you within 24 hours.');
-      contactForm.reset();
-      const label = document.querySelector('#fileUploadZone span');
-      if (label) label.textContent = 'Upload Pictures of the Issue/Space';
+      /*
+      | Validate email
+      */
+
+      const emailInput = contactForm.querySelector('input[name="email"]');
+
+      if (emailInput && !emailInput.checkValidity()) {
+        alert('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+
+      /*
+      | File limits
+      */
+
+      const files = fileInput
+        ? Array.from(fileInput.files)
+        : [];
+
+      const maxFiles = 5;
+      const maxFileSize = 5 * 1024 * 1024;
+      const maxTotalSize = 15 * 1024 * 1024;
+
+      if (files.length > maxFiles) {
+        alert('You can upload a maximum of 5 images.');
+        return;
+      }
+
+      const oversizedFile = files.find(
+        (file) => file.size > maxFileSize
+      );
+
+      if (oversizedFile) {
+        alert('Each image must be 5 MB or smaller.');
+        return;
+      }
+
+      const totalSize = files.reduce(
+        (total, file) => total + file.size,
+        0
+      );
+
+      if (totalSize > maxTotalSize) {
+        alert('The total size of all images must be 15 MB or less.');
+        return;
+      }
+
+      /*
+      | Build multipart form manually
+      |
+      | We deliberately do NOT use:
+      |
+      | new FormData(contactForm)
+      |
+      | for the files.
+      |
+      | Safari 26.5.x has a WebKit issue affecting disk-backed
+      | File objects in multipart requests. Reading each file into
+      | memory first avoids the zero-byte POST problem.
+      */
+
+      const formData = new FormData();
+
+      formData.append(
+        'name',
+        contactForm.querySelector('[name="name"]').value.trim()
+      );
+
+      formData.append(
+        'email',
+        contactForm.querySelector('[name="email"]').value.trim()
+      );
+
+      formData.append(
+        'phone',
+        contactForm.querySelector('[name="phone"]').value.trim()
+      );
+
+      formData.append(
+        'location',
+        contactForm.querySelector('[name="location"]').value.trim()
+      );
+
+      formData.append(
+        'message',
+        contactForm.querySelector('[name="message"]').value.trim()
+      );
+
+      formData.append(
+        'captcha',
+        captchaInput.value.trim()
+      );
+
+      const honeypot = contactForm.querySelector('[name="website"]');
+
+      formData.append(
+        'website',
+        honeypot ? honeypot.value : ''
+      );
+
+      /*
+      | Convert uploaded files to memory-backed Blobs
+      */
+
+      try {
+        for (const file of files) {
+          const buffer = await file.arrayBuffer();
+
+          const memoryBlob = new Blob(
+            [buffer],
+            {
+              type: file.type || 'application/octet-stream'
+            }
+          );
+
+          formData.append(
+            'propertyImages[]',
+            memoryBlob,
+            file.name
+          );
+        }
+      } catch (error) {
+        console.error('File preparation error:', error);
+
+        alert(
+          'One of the selected images could not be prepared for upload.'
+        );
+
+        return;
+      }
+
+      /*
+      | Submit
+      */
+
+      const originalButtonText = submitButton.textContent;
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        const response = await fetch('send-quote.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        let data;
+
+        try {
+          data = await response.json();
+        } catch {
+          throw new Error(
+            'The server returned an unexpected response.'
+          );
+        }
+
+        if (!response.ok || !data.success) {
+          throw new Error(
+            data.message ||
+            'We could not send your request.'
+          );
+        }
+
+        alert(data.message);
+
+        contactForm.reset();
+
+        const uploadLabel = document.querySelector(
+          '#fileUploadZone span'
+        );
+
+        if (uploadLabel) {
+          uploadLabel.textContent =
+            'Upload Pictures of the Issue/Space';
+        }
+
+      } catch (error) {
+        console.error('Quote form error:', error);
+
+        alert(
+          error.message ||
+          'We could not send your request right now. Please try again.'
+        );
+
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
     });
   }
 
